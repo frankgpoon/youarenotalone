@@ -1,0 +1,66 @@
+body{
+    background-color: #d1e2ff;
+}
+
+.links {
+	/*display: flex;*/
+	align-items: center;
+	/*justify-content: center;*/
+}
+.button {
+    background-color: white; 
+    border: none;
+    color: white;
+    left: 45%
+    position:relative;
+    padding: 12px 24px;
+	font-family: 'Indie Flower', cursive;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 26px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    -webkit-border-radius: 55px;
+	-moz-border-radius: 55px;
+	border-radius: 55px;
+}
+
+.button2 {
+    background-color: #d1e2ff; 
+    color: gray; 
+    border: 3px solid gray;
+}
+
+.button2:hover {
+    background-color: white;
+    color: gray;
+}
+
+#depress {
+	display: block; 
+	margin: 0 auto;
+}
+
+#std {
+	display: block; 
+	margin: 0 auto;
+}
+
+#alcohol {
+	display: block; 
+	margin: 0 auto;
+}
+
+#homeless {
+	display: block; 
+	margin: 0 auto;
+}
+
+#domv {
+	display: block; 
+	margin: 0 auto;
+}
+
+
+
