@@ -1,5 +1,5 @@
-body {
-	background-color: #d1e2ff;
+body{
+    background-color: #d1e2ff;
 }
 
 #main-title{
@@ -11,23 +11,23 @@ body {
 }
 
 .links {
-	display: flex;
+	/*display: flex;*/
 	align-items: center;
-	justify-content: center;
+	/*justify-content: center;*/
 
 }
 .button {
     background-color: white; /* Green */
     border: none;
     color: white;
-    left:35%;
+    left:45%;
     position:relative;
-    padding: 16px 32px;
+    padding: 14px 28px;
     font-family: 'Patrick Hand', cursive;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 32px;
+    font-size: 26px;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
