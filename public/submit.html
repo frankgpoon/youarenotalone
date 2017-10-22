@@ -8,25 +8,17 @@
     Topic: <input type="text" id="topic"><br>
     <br>
     Your Story:<br>
-    <textarea form ="testformid" id="story" rows= "50" cols="150"></textarea><br>
-    <button onclick="submitForm()">Share Your Story</button><br>
+    <textarea form ="storyForm" id="story" rows= "50" cols="150"></textarea><br>
+    <button onclick='submitForm()'>Share Your Story</button><br>
     </form>
 
-
-    <script
-    src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script>
-
-
-    <script src="js/scripts.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Sends postReq to our funtions URL -->
     <script>
       function submitForm(){
-        window.location("google.com");
-        var text = getElementById("story").value;
-        var topic = getElementById("topic").value;
+        var topic = document.getElementById("storyForm").elements[0].value
+        var text = document.getElementById("storyForm").elements["story"].value
+        document.write(text);
         if (text != null && topic != null) {
           jQuery.post("/" + topic, text);
         }
