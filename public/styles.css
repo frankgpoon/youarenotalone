@@ -17,7 +17,7 @@ body{
 
 }
 .button {
-    background-color: white; 
+    background-color: white;
     border: none;
     color: white;
     position:relative;
@@ -34,8 +34,8 @@ body{
 
 .button2 {
     left:45%;
-    background-color: #d1e2ff; 
-    color: gray; 
+    background-color: #d1e2ff;
+    color: gray;
     border: 2px solid white;
 }
 
@@ -46,7 +46,7 @@ body{
 
 
 .button3 {
-    background-color: white; 
+    background-color: white;
     border: none;
     color: white;
     position:relative;
@@ -65,7 +65,7 @@ body{
     left: 45.75%;
     bottom: 0px;
     background-color: transparent;
-    color: gray; 
+    color: gray;
 }
 
 .button4:hover {
@@ -146,18 +146,18 @@ body{
   }
 }
 =======
-.topic-title {
-	font-family: 'Arima Madurai', cursive;
+.h1 {
+	font-family: 'Roboto', sans-serif;
 	color: gray;
 	font-size: 50px;
 	text-align: center;
 }
 
-#postBox {
+.postBox {
 	color: gray;
 	text-align: left;
 	background-color: white;
-	font-family: 'Arima Madurai', cursive;
+	font-family: 'Roboto', sans-serif;
 	font-size: 28px;
 	margin-top: 40;
 	margin-bottom: 40px;
