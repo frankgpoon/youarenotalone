@@ -24,26 +24,105 @@ function getHTML(topic, numberOfPosts) {
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+        function submitForm(){
+            var headers = {
+                topic: ` + topic + `,
+                text: document.getElementById('storyForm').elements['story'].value
+            }
+            if (text !== null && topic !== null) {
+              jQuery.post('/add', headers);
+            }
+        }
+        </script>
     </head>
     `;
 
-    var body = `
+    return head + getHTMLBody(topic, numberOfPosts);
+}
+
+function getHTMLBody(topic, numberOfPosts) {
+    var subtitle = 'There are currently ' + numberOfPosts + ' posts in this topic.';
+    if (numberOfPosts === 1) {
+        subtitle = 'There is currently 1 post in this topic.'
+    }
+
+    var heading = `
     <body>
-        <h1>There are currently ` + numberOfPosts + ` posts in this topic.</h1>
+        <h1>` + topic + `</h1>
+        <p>` + subtitle + `<p>
+    `;
+
+    var footer = `
+        <form method="post" id='storyForm'>
+        <p>Submit Your Story:</p><br>
+        <textarea form ="storyForm" id="story" rows= "50" cols="150"></textarea><br>
+        <button onclick='submitForm()'>Share</button><br>
+        </form>
     </body>
     </html>
     `;
-    return head + body;
+
+    var main = '';
+
+    var topicRef = topicsRef.child(topic);
+    topicRef.on("value", (snapshot) => {
+        var topic = snapshot.val();
+        var ids = Object.keys(topic);
+        console.log(topic);
+        console.log(ids);
+        for (var i in ids) {
+            if (i !== 'created') {
+                main = `<p>` + topic[id].text + `</p>
+                <p>Posted at ` + topic[id].timestamp.toString() + `</p><br>` + main;
+            }
+        }
+
+
+        return heading + main + footer;
+    })
+    return heading + main + footer;
 }
 
+// Main Firebase functions
+
+// Adds a post to the given topic in headers
+exports.add = functions.https.onRequest((req, res) => {
+    // takes headers from jquery post request
+    var headers = req.headers;
+    console.log(headers);
+
+    // finds topic and text from headers
+    var topic = headers['topic'];
+    var text = headers['text'];
+
+    // find timestamp
+    var timestamp = Date.now();
+
+    // add text and timestamp to entry under topic
+    var topicRef = topicsRef.child(topic);
+
+    // generate a unique id for this entry (hope it's ordered when displaying)
+    topicRef.push({
+        text: text,
+        timestamp: timestamp
+    });
+
+    // send it back to old, refreshed page
+    res.status(200).redirect('back');
+})
+
+
+// Called every time any path that is not a file name is requested besides /add
 exports.load = functions.https.onRequest((req, res) => {
     // take path name
     var topic = req.url.substring(1);
 
     // check for file extension and don't create topic if file exists
-    if (topic.indexOf('.') < 0) {
-        topicsRef.on("value", function(snapshot) {
-            // import files async
+    if (topic.indexOf('.') < 0 && topic !== 'add') {
+        topicsRef.on("value", (snapshot) => {
+            // import topics async
             var topics = snapshot.val();
             console.log(topic + ' second call of topic');
             // check if topic exists
@@ -57,7 +136,11 @@ exports.load = functions.https.onRequest((req, res) => {
 
             var topicRef = topicsRef.child(topic);
             // use getHTML function to load entries
-            console.log('length of current topic is ' + Object.keys(topics.topic).length);
+            var numberOfPosts = 0;
+            console.log(topics);
+            if (typeof topics[topic] !== undefined) {
+                numberOfPosts = Object.keys(topics[topic]).length - 1;
+            }
 
             // req.url has the path in "/path" form, so need to substring by 1
             if (topic !== 'add') {
@@ -65,20 +148,10 @@ exports.load = functions.https.onRequest((req, res) => {
                     getHTML(topic, numberOfPosts)
                 );
             }
-        }, function (errorObject) {
+        }, (errorObject) => {
             console.log("The read failed: " + errorObject.code);
         });
 
     }
-    /*
-    var topicRef = topicsRef.child(topic);
 
-    // use getHTML function to load entries
-
-    // req.url has the path in "/path" form, so need to substring by 1
-    if (topic !== 'add') {
-        res.status(200).send(
-            getHTML(topic)
-        );
-    }*/
 })
