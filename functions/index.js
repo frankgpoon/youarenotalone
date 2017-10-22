@@ -59,7 +59,7 @@ function getHTMLBody(topic, numberOfPosts) {
     var footer = `
         <form method="post" id='storyForm'>
         <p>Submit Your Story:</p><br>
-        <textarea form ="storyForm" id="story" rows= "50" cols="150"></textarea><br>
+        <textarea form ="storyForm" id="story" rows= "15" cols="75"></textarea><br>
         <button onclick='submitForm()'>Share</button><br>
         </form>
     </body>
