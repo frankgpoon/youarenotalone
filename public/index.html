@@ -17,11 +17,12 @@
   </head>
   <body>
       
-    <button onclick="myFunction()">Submit</button>
-    <form> Story:<br>
-    <form method="post" action="action.php">
-    Your Story: <input type="text" name="story"><br>
-    <button type="submit"></button>
+    <form method="post" id='storyForm'>
+    Topic: <input type="text" id="topic"><br>
+    <br>
+    Your Story:<br>
+    <textarea form ="testformid" id="story" rows= "50" cols="150"></textarea><br>
+    <button onclick="submitForm()">Share Your Story</button><br>
     </form>
 
 
