@@ -1,5 +1,6 @@
 const functions = require('firebase-functions');
 var admin = require("firebase-admin");
+var bodyParser = require("body-parser");
 
 admin.initializeApp({
     credential: admin.credential.cert({
@@ -28,10 +29,10 @@ function getHTML(topic, numberOfPosts) {
         <script>
         function submitForm(){
             var headers = {
-                topic: ` + topic + `,
+                topic: '` + topic + `',
                 text: document.getElementById('storyForm').elements['story'].value
             }
-            if (text !== null && topic !== null) {
+            if (headers.text !== null && headers.topic !== null) {
               jQuery.post('/add', headers);
             }
         }
@@ -50,7 +51,7 @@ function getHTMLBody(topic, numberOfPosts) {
 
     var heading = `
     <body>
-        <h1>` + topic + `</h1>
+        <h1>#` + topic + `</h1>
         <p>` + subtitle + `<p>
     `;
 
@@ -74,8 +75,8 @@ function getHTMLBody(topic, numberOfPosts) {
         console.log(ids);
         for (var i in ids) {
             if (i !== 'created') {
-                main = `<p>` + topic[id].text + `</p>
-                <p>Posted at ` + topic[id].timestamp.toString() + `</p><br>` + main;
+                main = `<p>` + topic[i].text + `</p>
+                <p>Posted at ` + topic[i].timestamp.toString() + `</p><br>` + main;
             }
         }
 
@@ -90,27 +91,28 @@ function getHTMLBody(topic, numberOfPosts) {
 // Adds a post to the given topic in headers
 exports.add = functions.https.onRequest((req, res) => {
     // takes headers from jquery post request
-    var headers = req.headers;
-    console.log(headers);
+    console.log(req.query);
+    console.log(req.body);
 
     // finds topic and text from headers
-    var topic = headers['topic'];
-    var text = headers['text'];
+    var topic = req.query['topic'];
+    var text = req.query['text'];
 
-    // find timestamp
-    var timestamp = Date.now();
+    if (text !== '') {// find timestamp
+        var timestamp = Date.now();
 
-    // add text and timestamp to entry under topic
-    var topicRef = topicsRef.child(topic);
+        // add text and timestamp to entry under topic
+        var topicRef = topicsRef.child(topic);
 
-    // generate a unique id for this entry (hope it's ordered when displaying)
-    topicRef.push({
-        text: text,
-        timestamp: timestamp
-    });
+        // generate a unique id for this entry (hope it's ordered when displaying)
+        topicRef.push({
+            text: text,
+            timestamp: timestamp
+        });
 
-    // send it back to old, refreshed page
-    res.status(200).redirect('back');
+        // send it back to old, refreshed page
+        res.status(200).redirect('back');
+    }
 })
 
 
@@ -118,26 +120,24 @@ exports.add = functions.https.onRequest((req, res) => {
 exports.load = functions.https.onRequest((req, res) => {
     // take path name
     var topic = req.url.substring(1);
+    if (topic.charAt(topic.length - 1) === '/') {
+        topic = topic.substring(0, topic.length - 1);
+    }
 
     // check for file extension and don't create topic if file exists
     if (topic.indexOf('.') < 0 && topic !== 'add') {
         topicsRef.on("value", (snapshot) => {
             // import topics async
             var topics = snapshot.val();
-            console.log(topic + ' second call of topic');
             // check if topic exists
             if (!topics.hasOwnProperty(topic)) {
-                console.log('Creating topic ' + topic);
                 // create new topic and set created flag so it's not null
                 topicsRef.child(topic).set({created: true});
-            } else {
-                console.log('Topic ' + topic + ' already exists');
             }
 
             var topicRef = topicsRef.child(topic);
             // use getHTML function to load entries
             var numberOfPosts = 0;
-            console.log(topics);
             if (typeof topics[topic] !== undefined) {
                 numberOfPosts = Object.keys(topics[topic]).length - 1;
             }

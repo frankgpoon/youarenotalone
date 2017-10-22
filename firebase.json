@@ -4,13 +4,16 @@
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**",
-      "*.ico"
+      "**/node_modules/**"
       ],
     "rewrites": [
         {
-        "source": "**",
-        "function": "load"
+            "source": "/add",
+            "function": "add"
+        },
+        {
+            "source": "**",
+            "function": "load"
         }]
   },
   "database": {
