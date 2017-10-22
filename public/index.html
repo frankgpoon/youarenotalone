@@ -16,44 +16,24 @@
 
   </head>
   <body>
+      
+    <button onclick="myFunction()">Submit</button>
+    <form> Story:<br>
+    <form method="post" action="action.php">
+    Your Story: <input type="text" name="story"><br>
+    <button type="submit"></button>
+    </form>
+
+
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+
+
+    <script src="js/scripts.js"></script>
+
     
-  <button onclick="myFunction()">Submit</button>
-  <form> Story:<br>
-
-
-<<<<<<< HEAD
-    <script>
-        src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous">
-=======
-<<<<<<< HEAD
-</head>
-
-<body>
-  <script src="js/scripts.js"></script>
-
-<form method="post" action="action.php">
-Your Story: <input type="text" name="story"><br>
-<button type="submit">
-</form>
-
-</body>
-</html>
-=======
-        try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
->>>>>>> c04e070d3974eef9b489d7fed7059387317fb104
-    </script>
-
 
   </body>
-</html>
->>>>>>> d5ca402819045a255a566c23b5d859846548b0e7
+
