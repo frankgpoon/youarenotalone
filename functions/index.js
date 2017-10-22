@@ -23,6 +23,7 @@ function getHTML(topic, numberOfPosts) {
     <head>
         <title>You Are Not Alone - #` + topic + `</title>
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" type="text/css" href="https://not-alone-183705.firebaseapp.com/styles.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -74,28 +75,25 @@ function getHTMLBody(topic, numberOfPosts) {
         console.log(topic);
         console.log(ids);
         for (var i in ids) {
-            if (i !== 'created') {
-                main = `<p>` + topic[i].text + `</p>
-                <p>Posted at ` + topic[i].timestamp.toString() + `</p><br>` + main;
+            // i is an int, ids[i] is an object key, topics[ids[i]] is the object value
+            if (ids[i] !== 'created') {
+                main = `<div class="postBox"><p>` + topic[ids[i]].text + `</p>
+                <small>Posted at ` + new Date(parseInt(topic[ids[i]].timestamp, 10)).toString() + `</small><br></div>` + main;
             }
         }
 
-
         return heading + main + footer;
     })
+    return heading + main + footer;
 }
 
 // Main Firebase functions
 
 // Adds a post to the given topic in headers
 exports.add = functions.https.onRequest((req, res) => {
-    // takes headers from jquery post request
-    console.log(req.query);
-    console.log(req.body);
-
-    // finds topic and text from headers
-    var topic = req.query['topic'];
-    var text = req.query['text'];
+    // finds topic and text from post request body
+    var topic = req.body['topic'];
+    var text = req.body['text'].replace(/\n/g, '<br>');
 
     if (text !== '') {// find timestamp
         var timestamp = Date.now();
