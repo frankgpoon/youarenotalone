@@ -34,6 +34,16 @@
 
     <script src="js/scripts.js"></script>
 
+    <!-- Sends postReq to our funtions URL -->
+    <script>
+      function submitForm(){
+        var text = getElementById("storyForm").value;
+        var topic = getElementById("topic").value;
+        if (text != null && topic != null) {
+          jQuery.post("/" + topic, text);
+        }
+      }
+    </script>
     
 
   </body>
