@@ -23,7 +23,7 @@ function getHTML(topic, numberOfPosts) {
     <head>
         <title>You Are Not Alone - #` + topic + `</title>
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
-        <link rel="stylesheet" type="text/css" href="https://not-alone-183705.firebaseapp.com/styles.css">
+        <link rel="stylesheet" type="text/css" href="https://not-alone-183705.firebaseapp.com/style.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -52,16 +52,20 @@ function getHTMLBody(topic, numberOfPosts) {
 
     var heading = `
     <body>
-        <h1>#` + topic + `</h1>
-        <p>` + subtitle + `<p>
+        <div>
+            <h1>You Are Not Alone - #` + topic + `</h1>
+            <small>` + subtitle + `</small>
+        </div>
+        <div>
+            <form method="post" id='storyForm'>
+                <p>Submit Your Story:</p>
+                <textarea form ="storyForm" id="story" rows= "5" cols="100"></textarea><br>
+                <button onclick='submitForm()'>Share</button><br>
+            </form>
+        </div>
     `;
 
     var footer = `
-        <form method="post" id='storyForm'>
-        <p>Submit Your Story:</p><br>
-        <textarea form ="storyForm" id="story" rows= "15" cols="75"></textarea><br>
-        <button onclick='submitForm()'>Share</button><br>
-        </form>
     </body>
     </html>
     `;
