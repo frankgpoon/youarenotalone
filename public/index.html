@@ -18,43 +18,38 @@
 
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <link rel="stylesheet" href="style.css">
 
-    <script>
-    document.getElementById("query").addEventListener("keydown", function(e) {
-    if (!e) { var e = window.event; }
-    e.preventDefault(); // sometimes useful
-
-    // Enter is pressed
-    if (e.keyCode == 13) {
-        var text = document.getElementById('query').value;
-        jQuery.get('/' + text);
-    }
-}, false);
-    </script>
+    
 
   </head>
   <body>
 
 <main>
   <div><h1 style="text-align: center">You are not alone!</h1>
-      <input id="query" type="text" id="search", onkeyup="this.value = this.value.replace(/[^a-z]/, '')" placeholder="Find a topic...">
+      <input id="query" type="text" onkeyup="this.value = this.value.replace(/[^a-z]/, '')" placeholder="Find a topic...">
   </div>
-  <link rel="stylesheet" href="https://not-alone-183705.firebaseapp.com/animation.css">
+  <script>
+    document.getElementById("query").addEventListener("keydown", function(e) {
+    if (!e) { var e = window.event; }
+    //e.preventDefault(); // sometimes useful
+
+    // Enter is pressed
+    if (e.keyCode == 13) {
+        var text = document.getElementById('query').value;
+        jQuery.get('./' + text);
+    }
+}, false);
+    </script>
 
   <div><p>This is a supportive story-sharing community focused on socially stigmatized issues, such as HIV, Homelessness, and Domestic Violence. People suffering from these mental/physical problems can often feel isolated and depressed. So this community provides a safe-space where users can help other users across the world by anonymously sharing their heart-warming stories around the same issue.<br>You know why? Because no one deserves to feel alone!</p></div>
   </body>
 
   <div><small>Note: This website is NOT an alternative to therapy and counseling, etc. Nor is it supposed to be that way. It is just a welcoming and friendly environment to make the social stigmas around health issues easier to handle. Also, encouraging to get help from professionals.</small></div>
 </main>
-<div id="clouds">
-  <div class="cloud x1"></div>
-  <!-- Time for multiple clouds to dance around -->
-  <div class="cloud x2"></div>
-  <div class="cloud x3"></div>
-  <div class="cloud x4"></div>
-  <div class="cloud x5"></div>
-</div>
+
 
 
   </div>

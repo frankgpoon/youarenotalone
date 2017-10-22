@@ -10,7 +10,7 @@ body {
 	top: -700px;
 	padding: 0 0;
 	height: 10000px;
-	background-color: #def;
+	background-color: rgba(255,255,255,0);
 }
 
 /*Time to finalise the cloud shape*/
