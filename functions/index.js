@@ -53,7 +53,7 @@ function getHTMLBody(topic, numberOfPosts) {
     var heading = `
     <body>
         <h1>#` + topic + `</h1>
-        <p>` + subtitle + `<p>
+        <small>` + subtitle + `</small>
     `;
 
     var footer = `
