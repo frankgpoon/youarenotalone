@@ -10,6 +10,9 @@ admin.initializeApp({
   databaseURL: "https://not-alone-183705.firebaseio.com"
 });
 
+var db = admin.database();
+var rootRef = db.ref();
+
 // Helper Functions
 
 function getHTML(topic) {
@@ -35,12 +38,27 @@ function getHTML(topic) {
 exports.load = functions.https.onRequest((req, res) => {
     // check if topic exists in database
     // if not then create topic
+    var topic = req.url.substring(1);
 
+    var topicsRef = rootRef.child("topics");
+    console.log('log is working 1');
+    rootRef.on("value", function(snapshot) {
+        var value = snapshot.val()
+        console.log(value === null);
+        console.log(value);
+        /*if (!value.hasOwnProperty(topic)) {
+            console.log('Creating topic ' + topic);
+            topicsRef.child(topic).set({});
+        }*/
+    }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+    });
+
+    var topicRef = topicsRef.child(topic);
 
     // use getHTML function to load entries
 
     // req.url has the path in "/path" form, so need to substring by 1
-    var topic = req.url.substring(1);
     if (topic !== 'add') {
         res.status(200).send(
             getHTML(topic)
