@@ -1,5 +1,5 @@
 body{
-    background-color: #d1e2ff;
+    background-color: #eee;
 }
 
 #main-title{
@@ -146,22 +146,32 @@ body{
   }
 }
 =======
-.h1 {
+h1 {
 	font-family: 'Roboto', sans-serif;
-	color: gray;
+	color: #444;
 	font-size: 50px;
 	text-align: center;
 }
 
+p {
+    font-size: 28px;
+    color: #444;
+}
+
+small {
+    font-size: 16px;
+    color: #444;
+}
+
 .postBox {
-	color: gray;
+	color: #444;
 	text-align: left;
 	background-color: white;
 	font-family: 'Roboto', sans-serif;
-	font-size: 28px;
 	margin-top: 40;
 	margin-bottom: 40px;
 	margin-left: 25%;
 	margin-right: 25%;
     border-radius: 5px;
+    padding: 3%;
 }
