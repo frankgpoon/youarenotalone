@@ -1,10 +1,45 @@
+body {
+	background-color: #d1e2ff;
+}
+
+#main-title{
+	color: gray;
+	padding-top: 50px;
+	font-family: 'Indie Flower', cursive;
+	text-align: center;
+	font-size: 100px;
+}
+
+.links {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+}
 .button {
-    background-color: #4CAF50; /* Green */
+    background-color: white; /* Green */
     border: none;
     color: white;
-    padding: 15px 32px;
+    left:35%;
+    position:relative;
+    padding: 16px 32px;
+    font-family: 'Patrick Hand', cursive;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 32px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button2 {
+    background-color: #d1e2ff; 
+    color: gray; 
+    border: 2px solid white;
+}
+
+.button2:hover {
+    background-color: white;
+    color: gray;
 }

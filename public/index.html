@@ -3,48 +3,32 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
 
+    <title> You are not alone. </title>
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/4.6.0/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
     <script defer src="/__/firebase/4.6.0/firebase-auth.js"></script>
     <script defer src="/__/firebase/4.6.0/firebase-database.js"></script>
 
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Patrick+Hand" rel="stylesheet">
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
+    <link rel="stylesheet" href="styles.css">
 
   </head>
   <body>
       
-    <form method="post" id='storyForm'>
-    Topic: <input type="text" id="topic"><br>
-    <br>
-    Your Story:<br>
-    <textarea form ="testformid" id="story" rows= "50" cols="150"></textarea><br>
-    <button onclick="submitForm()">Share Your Story</button><br>
-    </form>
+  <div id="main-title"> You are not alone. </div>
+
+  <div id="links"> 
+    <button class="button button2">Tell your story. </button>
+    <button class="button button2"> See others' stories. </button>
+  </div>
 
 
-    <script
-    src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script>
-
-
-    <script src="js/scripts.js"></script>
-
-    <!-- Sends postReq to our funtions URL -->
-    <script>
-      function submitForm(){
-        var text = getElementById("storyForm").value;
-        var topic = getElementById("topic").value;
-        if (text != null && topic != null) {
-          jQuery.post("/" + topic, text);
-        }
-      }
-    </script>
-    
 
   </body>
+</html>
 

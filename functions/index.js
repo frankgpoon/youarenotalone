@@ -73,4 +73,18 @@ exports.load = functions.https.onRequest((req, res) => {
         console.log("The read failed: " + errorObject.code);
     });
 
+<<<<<<< HEAD
 })
+=======
+    var topicRef = topicsRef.child(topic);
+
+    // use getHTML function to load entries
+
+    // req.url has the path in "/path" form, so need to substring by 1
+    if (topic !== 'add') {
+        res.status(200).send(
+            getHTML(topic)
+        );
+    }
+}
+>>>>>>> 3f527751d1c49774678098e57ecc425f88ebac2f
