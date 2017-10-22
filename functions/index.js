@@ -73,9 +73,6 @@ exports.load = functions.https.onRequest((req, res) => {
         console.log("The read failed: " + errorObject.code);
     });
 
-<<<<<<< HEAD
-})
-=======
     var topicRef = topicsRef.child(topic);
 
     // use getHTML function to load entries
@@ -86,5 +83,4 @@ exports.load = functions.https.onRequest((req, res) => {
             getHTML(topic)
         );
     }
-}
->>>>>>> 3f527751d1c49774678098e57ecc425f88ebac2f
+})
