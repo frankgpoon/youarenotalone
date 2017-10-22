@@ -18,8 +18,8 @@
     <!-- Sends postReq to our funtions URL -->
     <script>
       function submitForm(){
-        var text = getElementById("story").value;
-        var topic = getElementById("topic").value;
+        var text = documents.getElementById("story").value;
+        var topic = documents.getElementById("topic").value;
         if (text != null && topic != null) {
           jQuery.post("/" + topic, text);
         }
