@@ -27,12 +27,44 @@ function getHTML(topic, numberOfPosts) {
     </head>
     `;
 
+    // script to get stories
+    var stories = '';
+    var body = '';
+
+    if (numberOfPosts > 0) { // if not empty
+        var topicRef = topicsRef.child(topic);
+        topicRef.on("value", function(snapshot) {
+            var topic = snapshot.val();
+            var ids = Object.keys(topic);
+            console.log(topic);
+            console.log(ids);
+            for (var i in ids) {
+                if (i !== 'created') {
+                    stories = `
+                    <p>` + topic[id].text`
+                    </p>` + stories;
+                }
+            }
+            var body = `
+            <body>
+                <h1>#` + topic + `</h1>
+                <p>There are currently ` + numberOfPosts + ` posts in this topic.<p>
+            ` + stories + `
+            </body>
+            </html>
+            `;
+            return head + body;
+        })
+    }
+
     var body = `
     <body>
-        <h1>There are currently ` + numberOfPosts + ` posts in this topic.</h1>
+        <h1>` + topic + `</h1>
+        <p>There are currently ` + numberOfPosts + ` posts in this topic.<p>
     </body>
     </html>
     `;
+
     return head + body;
 }
 
@@ -43,7 +75,7 @@ exports.load = functions.https.onRequest((req, res) => {
     // check for file extension and don't create topic if file exists
     if (topic.indexOf('.') < 0) {
         topicsRef.on("value", function(snapshot) {
-            // import files async
+            // import topics async
             var topics = snapshot.val();
             console.log(topic + ' second call of topic');
             // check if topic exists
@@ -57,7 +89,11 @@ exports.load = functions.https.onRequest((req, res) => {
 
             var topicRef = topicsRef.child(topic);
             // use getHTML function to load entries
-            console.log('length of current topic is ' + Object.keys(topics.topic).length);
+            var numberOfPosts = 0;
+            console.log(topics);
+            if (typeof topics[topic] !== undefined) {
+                numberOfPosts = Object.keys(topics[topic]).length - 1;
+            }
 
             // req.url has the path in "/path" form, so need to substring by 1
             if (topic !== 'add') {
