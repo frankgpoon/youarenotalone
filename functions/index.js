@@ -83,7 +83,6 @@ function getHTMLBody(topic, numberOfPosts) {
 
         return heading + main + footer;
     })
-    return heading + main + footer;
 }
 
 // Main Firebase functions
