@@ -1,4 +1,10 @@
-<form method="post" id='storyForm'>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Share your story</title>
+</head>
+<body>
+    <form method="post" id='storyForm'>
     Topic: <input type="text" id="topic"><br>
     <br>
     Your Story:<br>
@@ -18,10 +24,19 @@
     <!-- Sends postReq to our funtions URL -->
     <script>
       function submitForm(){
+<<<<<<< HEAD
         var text = documents.getElementById("story").value;
         var topic = documents.getElementById("topic").value;
+=======
+        window.location("google.com");
+        var text = getElementById("story").value;
+        var topic = getElementById("topic").value;
+>>>>>>> 3f527751d1c49774678098e57ecc425f88ebac2f
         if (text != null && topic != null) {
           jQuery.post("/" + topic, text);
         }
       }
     </script>
+</body>
+</html>
+
