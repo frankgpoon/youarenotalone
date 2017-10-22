@@ -10,8 +10,6 @@ admin.initializeApp({
   databaseURL: "https://not-alone-183705.firebaseio.com"
 });
 
-<<<<<<< HEAD
-=======
 // Helper Functions
 
 function getHTML(topic) {
@@ -48,5 +46,4 @@ exports.load = functions.https.onRequest((req, res) => {
             getHTML(topic)
         );
     }
-})
->>>>>>> 3737b6a964fafde2a2041cb43e959767a7f2cd66
+}
