@@ -11,7 +11,7 @@ admin.initializeApp({
 });
 
 var db = admin.database();
-var rootRef = db.ref();
+var topicsRef = db.ref().child("topics");
 
 // Helper Functions
 
@@ -26,9 +26,16 @@ function getHTML(topic) {
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     `;
+    var displayText;
+    console.log(typeof topics);
+    if (topicsRef.child(topic) === null) {
+        displayText = 'The current topic, ' + topic + ' is empty. There are no posts.';
+    } else {
+        displayText = 'There are currently posts in ' + topic + '.';
+    }
     var body = `
     <body>
-        <h1>The current topic shown is ` + topic + `. If it is the same as the path, your code is working correctly.</h1>
+        <h1>` + displayText + `</h1>
     </body>
     </html>
     `;
@@ -39,29 +46,31 @@ exports.load = functions.https.onRequest((req, res) => {
     // check if topic exists in database
     // if not then create topic
     var topic = req.url.substring(1);
+    console.log(topic + ' first call of topic');
 
-    var topicsRef = rootRef.child("topics");
-    console.log('log is working 1');
-    rootRef.on("value", function(snapshot) {
-        var value = snapshot.val()
-        console.log(value === null);
-        console.log(value);
-        /*if (!value.hasOwnProperty(topic)) {
+    topicsRef.on("value", function(snapshot) {
+        var topics = snapshot.val();
+        console.log(topic + ' second call of topic');
+        if (!topics.hasOwnProperty(topic)) {
             console.log('Creating topic ' + topic);
             topicsRef.child(topic).set({});
-        }*/
+        } else {
+            console.log('Topic ' + topic + ' already exists');
+        }
+
+        var topicRef = topicsRef.child(topic);
+
+        console.log(topic + ' third call of topic');
+        // use getHTML function to load entries
+
+        // req.url has the path in "/path" form, so need to substring by 1
+        if (topic !== 'add') {
+            res.status(200).send(
+                getHTML(topic)
+            );
+        }
     }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
     });
 
-    var topicRef = topicsRef.child(topic);
-
-    // use getHTML function to load entries
-
-    // req.url has the path in "/path" form, so need to substring by 1
-    if (topic !== 'add') {
-        res.status(200).send(
-            getHTML(topic)
-        );
-    }
 })

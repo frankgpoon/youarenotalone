@@ -1,0 +1,240 @@
+[debug] [2017-10-22T12:04:43.606Z] ----------------------------------------------------------------------
+[debug] [2017-10-22T12:04:43.608Z] Command:       /usr/bin/node /usr/bin/firebase deploy
+[debug] [2017-10-22T12:04:43.608Z] CLI Version:   3.13.1
+[debug] [2017-10-22T12:04:43.608Z] Platform:      linux
+[debug] [2017-10-22T12:04:43.608Z] Node Version:  v8.7.0
+[debug] [2017-10-22T12:04:43.608Z] Time:          Sun Oct 22 2017 05:04:43 GMT-0700 (PDT)
+[debug] [2017-10-22T12:04:43.608Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-10-22T12:04:43.620Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-10-22T12:04:43.620Z] > authorizing via signed-in user
+[debug] [2017-10-22T12:04:43.622Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/not-alone-183705  
+ Sun Oct 22 2017 05:04:43 GMT-0700 (PDT)
+[debug] [2017-10-22T12:04:43.971Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-22T12:04:43.974Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/not-alone-183705/tokens  
+ Sun Oct 22 2017 05:04:43 GMT-0700 (PDT)
+[debug] [2017-10-22T12:04:44.293Z] <<< HTTP RESPONSE 200
+[info] 3
+[info] 
+[info] === Deploying to 'not-alone-183705'...
+[info] 
+[info] i  deploying database, functions, hosting
+[info] i  database: checking rules syntax...
+[debug] [2017-10-22T12:04:44.782Z] >>> HTTP REQUEST PUT https://not-alone-183705.firebaseio.com/.settings/rules.json?dryRun=true {
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null"
+  }
+} 
+ Sun Oct 22 2017 05:04:44 GMT-0700 (PDT)
+[debug] [2017-10-22T12:04:45.016Z] <<< HTTP RESPONSE 200
+[info] ✔  database: rules syntax is valid
+[debug] [2017-10-22T12:04:45.023Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "firebase-admin": "~5.4.0",
+    "firebase-functions": "^0.7.0"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[info] i  runtimeconfig: ensuring necessary APIs are enabled...
+[debug] [2017-10-22T12:04:45.027Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/not-alone-183705?view=CONSUMER_VIEW  
+ Sun Oct 22 2017 05:04:45 GMT-0700 (PDT)
+[debug] [2017-10-22T12:04:45.029Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/not-alone-183705?view=CONSUMER_VIEW  
+ Sun Oct 22 2017 05:04:45 GMT-0700 (PDT)
+[debug] [2017-10-22T12:04:45.557Z] <<< HTTP RESPONSE 200
+[info] ✔  runtimeconfig: all necessary APIs are enabled
+[debug] [2017-10-22T12:04:45.562Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: all necessary APIs are enabled
+[debug] [2017-10-22T12:04:45.565Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/not-alone-183705  
+ Sun Oct 22 2017 05:04:45 GMT-0700 (PDT)
+[debug] [2017-10-22T12:04:45.566Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/not-alone-183705/apiKeys  
+ Sun Oct 22 2017 05:04:45 GMT-0700 (PDT)
+[debug] [2017-10-22T12:04:45.962Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-22T12:04:45.968Z] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2017-10-22T12:04:50.966Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/not-alone-183705/configs  
+ Sun Oct 22 2017 05:04:50 GMT-0700 (PDT)
+[debug] [2017-10-22T12:04:51.183Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (29.01 KB) for uploading
+[debug] [2017-10-22T12:04:52.506Z] >>> HTTP REQUEST GET https://www.googleapis.com/storage/v1/b/staging.not-alone-183705.appspot.com  
+ Sun Oct 22 2017 05:04:52 GMT-0700 (PDT)
+[debug] [2017-10-22T12:04:52.657Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-22T12:04:52.660Z] >>> HTTP REQUEST POST https://www.googleapis.com/upload/storage/v1/b/staging.not-alone-183705.appspot.com/o?uploadType=media&name=firebase-functions-source ReadStream {
+  _readableState: 
+   ReadableState {
+     objectMode: false,
+     highWaterMark: 65536,
+     buffer: BufferList { head: [Object], tail: [Object], length: 1 },
+     length: 29705,
+     pipes: null,
+     pipesCount: 0,
+     flowing: null,
+     ended: true,
+     endEmitted: false,
+     reading: false,
+     sync: false,
+     needReadable: false,
+     emittedReadable: true,
+     readableListening: false,
+     resumeScheduled: false,
+     destroyed: false,
+     defaultEncoding: 'utf8',
+     awaitDrain: 0,
+     readingMore: false,
+     decoder: null,
+     encoding: null },
+  readable: true,
+  domain: null,
+  _events: { end: [Function] },
+  _eventsCount: 1,
+  _maxListeners: undefined,
+  path: '/tmp/firebase-functions-23548Mh1KZzxkyjke.zip',
+  fd: 15,
+  flags: 'r',
+  mode: 438,
+  start: undefined,
+  end: undefined,
+  autoClose: true,
+  pos: undefined,
+  bytesRead: 29705 } 
+ Sun Oct 22 2017 05:04:52 GMT-0700 (PDT)
+[debug] [2017-10-22T12:04:53.029Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: functions folder uploaded successfully
+[info] i  hosting: preparing public directory for upload...
+[debug] [2017-10-22T12:04:53.060Z] TypeError: no files or directories specified
+    at Object.module.exports (/usr/lib/node_modules/firebase-tools/node_modules/tar/lib/create.js:19:11)
+    at module.exports (/usr/lib/node_modules/firebase-tools/lib/prepareUpload.js:21:14)
+    at module.exports (/usr/lib/node_modules/firebase-tools/lib/deploy/hosting/deploy.js:23:10)
+    at _chain (/usr/lib/node_modules/firebase-tools/lib/deploy/index.js:22:45)
+    at /usr/lib/node_modules/firebase-tools/lib/deploy/index.js:25:14
+    at tryCatch (/usr/lib/node_modules/firebase-tools/node_modules/rsvp/dist/rsvp.js:525:12)
+    at invokeCallback (/usr/lib/node_modules/firebase-tools/node_modules/rsvp/dist/rsvp.js:538:13)
+    at publish (/usr/lib/node_modules/firebase-tools/node_modules/rsvp/dist/rsvp.js:508:7)
+    at flush (/usr/lib/node_modules/firebase-tools/node_modules/rsvp/dist/rsvp.js:2415:5)
+    at _combinedTickCallback (internal/process/next_tick.js:131:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2017-10-22T12:08:17.248Z] ----------------------------------------------------------------------
+[debug] [2017-10-22T12:08:17.251Z] Command:       /usr/bin/node /usr/bin/firebase deploy
+[debug] [2017-10-22T12:08:17.251Z] CLI Version:   3.13.1
+[debug] [2017-10-22T12:08:17.251Z] Platform:      linux
+[debug] [2017-10-22T12:08:17.251Z] Node Version:  v8.7.0
+[debug] [2017-10-22T12:08:17.251Z] Time:          Sun Oct 22 2017 05:08:17 GMT-0700 (PDT)
+[debug] [2017-10-22T12:08:17.251Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-10-22T12:08:17.263Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-10-22T12:08:17.264Z] > authorizing via signed-in user
+[debug] [2017-10-22T12:08:17.265Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/not-alone-183705  
+ Sun Oct 22 2017 05:08:17 GMT-0700 (PDT)
+[debug] [2017-10-22T12:08:17.601Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-22T12:08:17.603Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/not-alone-183705/tokens  
+ Sun Oct 22 2017 05:08:17 GMT-0700 (PDT)
+[debug] [2017-10-22T12:08:17.932Z] <<< HTTP RESPONSE 200
+[info] 3
+[info] 
+[info] === Deploying to 'not-alone-183705'...
+[info] 
+[info] i  deploying database, functions, hosting
+[info] i  database: checking rules syntax...
+[debug] [2017-10-22T12:08:18.516Z] >>> HTTP REQUEST PUT https://not-alone-183705.firebaseio.com/.settings/rules.json?dryRun=true {
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null"
+  }
+} 
+ Sun Oct 22 2017 05:08:18 GMT-0700 (PDT)
+[debug] [2017-10-22T12:08:18.763Z] <<< HTTP RESPONSE 200
+[info] ✔  database: rules syntax is valid
+[debug] [2017-10-22T12:08:18.768Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "firebase-admin": "~5.4.0",
+    "firebase-functions": "^0.7.0"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[info] i  runtimeconfig: ensuring necessary APIs are enabled...
+[debug] [2017-10-22T12:08:18.772Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/not-alone-183705?view=CONSUMER_VIEW  
+ Sun Oct 22 2017 05:08:18 GMT-0700 (PDT)
+[debug] [2017-10-22T12:08:18.773Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/not-alone-183705?view=CONSUMER_VIEW  
+ Sun Oct 22 2017 05:08:18 GMT-0700 (PDT)
+[debug] [2017-10-22T12:08:19.366Z] <<< HTTP RESPONSE 200
+[info] ✔  runtimeconfig: all necessary APIs are enabled
+[debug] [2017-10-22T12:08:19.376Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: all necessary APIs are enabled
+[debug] [2017-10-22T12:08:19.379Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/not-alone-183705  
+ Sun Oct 22 2017 05:08:19 GMT-0700 (PDT)
+[debug] [2017-10-22T12:08:19.381Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/not-alone-183705/apiKeys  
+ Sun Oct 22 2017 05:08:19 GMT-0700 (PDT)
+[debug] [2017-10-22T12:08:19.728Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-22T12:08:19.809Z] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2017-10-22T12:08:23.557Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/not-alone-183705/configs  
+ Sun Oct 22 2017 05:08:23 GMT-0700 (PDT)
+[debug] [2017-10-22T12:08:23.766Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (29.02 KB) for uploading
+[debug] [2017-10-22T12:08:25.062Z] >>> HTTP REQUEST GET https://www.googleapis.com/storage/v1/b/staging.not-alone-183705.appspot.com  
+ Sun Oct 22 2017 05:08:25 GMT-0700 (PDT)
+[debug] [2017-10-22T12:08:25.169Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-22T12:08:25.172Z] >>> HTTP REQUEST POST https://www.googleapis.com/upload/storage/v1/b/staging.not-alone-183705.appspot.com/o?uploadType=media&name=firebase-functions-source ReadStream {
+  _readableState: 
+   ReadableState {
+     objectMode: false,
+     highWaterMark: 65536,
+     buffer: BufferList { head: [Object], tail: [Object], length: 1 },
+     length: 29719,
+     pipes: null,
+     pipesCount: 0,
+     flowing: null,
+     ended: true,
+     endEmitted: false,
+     reading: false,
+     sync: false,
+     needReadable: false,
+     emittedReadable: true,
+     readableListening: false,
+     resumeScheduled: false,
+     destroyed: false,
+     defaultEncoding: 'utf8',
+     awaitDrain: 0,
+     readingMore: false,
+     decoder: null,
+     encoding: null },
+  readable: true,
+  domain: null,
+  _events: { end: [Function] },
+  _eventsCount: 1,
+  _maxListeners: undefined,
+  path: '/tmp/firebase-functions-23963To2R072rRjhV.zip',
+  fd: 15,
+  flags: 'r',
+  mode: 438,
+  start: undefined,
+  end: undefined,
+  autoClose: true,
+  pos: undefined,
+  bytesRead: 29719 } 
+ Sun Oct 22 2017 05:08:25 GMT-0700 (PDT)
+[debug] [2017-10-22T12:08:25.508Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: functions folder uploaded successfully
+[info] i  hosting: preparing public directory for upload...
+[debug] [2017-10-22T12:08:25.528Z] TypeError: no files or directories specified
+    at Object.module.exports (/usr/lib/node_modules/firebase-tools/node_modules/tar/lib/create.js:19:11)
+    at module.exports (/usr/lib/node_modules/firebase-tools/lib/prepareUpload.js:21:14)
+    at module.exports (/usr/lib/node_modules/firebase-tools/lib/deploy/hosting/deploy.js:23:10)
+    at _chain (/usr/lib/node_modules/firebase-tools/lib/deploy/index.js:22:45)
+    at /usr/lib/node_modules/firebase-tools/lib/deploy/index.js:25:14
+    at tryCatch (/usr/lib/node_modules/firebase-tools/node_modules/rsvp/dist/rsvp.js:525:12)
+    at invokeCallback (/usr/lib/node_modules/firebase-tools/node_modules/rsvp/dist/rsvp.js:538:13)
+    at publish (/usr/lib/node_modules/firebase-tools/node_modules/rsvp/dist/rsvp.js:508:7)
+    at flush (/usr/lib/node_modules/firebase-tools/node_modules/rsvp/dist/rsvp.js:2415:5)
+    at _combinedTickCallback (internal/process/next_tick.js:131:7)
+[error] 
+[error] Error: An unexpected error has occurred.
