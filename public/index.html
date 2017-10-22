@@ -22,7 +22,7 @@
 
     <link rel="stylesheet" href="style.css">
 
-    
+
 
   </head>
   <body>
@@ -39,7 +39,8 @@
     // Enter is pressed
     if (e.keyCode == 13) {
         var text = document.getElementById('query').value;
-        jQuery.get('./' + text);
+        //jQuery.get('./' + text);
+        location.href = './' + text;
     }
 }, false);
     </script>
