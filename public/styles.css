@@ -44,6 +44,22 @@ body{
     color: gray;
 }
 
-.postBox {
-	
+.topic-title {
+	font-family: 'Arima Madurai', cursive;
+	color: gray;
+	font-size: 50px;
+	text-align: center;
+}
+
+#postBox {
+	color: gray;
+	text-align: left;
+	background-color: white;
+	font-family: 'Arima Madurai', cursive;
+	font-size: 28px;
+	margin-top: 40;
+	margin-bottom: 40px;
+	margin-left: 25%;
+	margin-right: 25%;
+    border-radius: 5px;
 }
