@@ -8,41 +8,6 @@ admin.initializeApp({
   databaseURL: "https://not-alone-183705.firebaseio.com"
 });
 
-<<<<<<< HEAD
-exports.bigben = functions.https.onRequest((req, res) => {
-  const hours = (new Date().getHours() % 12) + 1 // london is UTC + 1hr;
-  res.status(200).send(`<!doctype html>
-    <head>
-      <title>Time</title>
-    </head>
-    <body>
-      ${'BONG '.repeat(hours)}
-    </body>
-  </html>`);
-});
-
-exports.add = functions.https.onRequest((req, res) => {
-  // POST request to DB -- parse req
-
-
-
-
-
-  // redirect back to front page
-  res.status(200).send(
-
-
-
-  	);
-});
-=======
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
-
 // Helper Functions
 
 function getHTML(topic) {
@@ -80,4 +45,3 @@ exports.load = functions.https.onRequest((req, res) => {
         );
     }
 })
->>>>>>> 1c2b2d0cb640274163c9e205654685eacd4e6b11
