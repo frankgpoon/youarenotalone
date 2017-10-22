@@ -13,10 +13,7 @@
     </form>
 
 
-    <script
-    src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
     <script src="js/scripts.js"></script>
@@ -24,17 +21,16 @@
     <!-- Sends postReq to our funtions URL -->
     <script>
       function submitForm(){
-<<<<<<< HEAD
-        var text = documents.getElementById("story").value;
-        var topic = documents.getElementById("topic").value;
-=======
-        window.location("google.com");
-        var text = getElementById("story").value;
-        var topic = getElementById("topic").value;
->>>>>>> 3f527751d1c49774678098e57ecc425f88ebac2f
+        var text = document.getElementById("story").
+        var topic = document.getElementById("topic").
         if (text != null && topic != null) {
-          jQuery.post("/" + topic, text);
+          jQuery.post("/" + topic, text, function callBack(){
+            console.log(topic + " " + text);
+          });
         }
+        
+        
+        console.log("hi");
       }
     </script>
 </body>
