@@ -1,4 +1,12 @@
 const functions = require('firebase-functions');
+var admin = require("firebase-admin");
+
+var serviceAccount = require("serviceAccountKey.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://not-alone-183705.firebaseio.com"
+});
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -30,6 +38,12 @@ function getHTML(topic) {
 }
 
 exports.load = functions.https.onRequest((req, res) => {
+    // check if topic exists in database
+    // if not then create topic
+
+
+    // use getHTML function to load entries
+
     // req.url has the path in "/path" form, so need to substring by 1
     var topic = req.url.substring(1);
     if (topic !== 'add') {
