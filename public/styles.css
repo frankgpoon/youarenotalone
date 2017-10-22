@@ -63,7 +63,7 @@ body{
 
 .button4 {
     left: 45.75%;
-    top:90%;
+    bottom: 0px;
     background-color: transparent;
     color: gray; 
 }
