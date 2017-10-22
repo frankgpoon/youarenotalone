@@ -16,20 +16,8 @@
     <!-- Sends postReq to our funtions URL -->
     <script>
       function submitForm(){
-<<<<<<< HEAD
-        var topic = document.getElementById("storyForm").elements[0].value
-        var text = document.getElementById("storyForm").elements["story"].value
-        document.write(text);
-=======
-<<<<<<< HEAD
-        var text = documents.getElementById("story").value;
-        var topic = documents.getElementById("topic").value;
-=======
-        window.location("google.com");
-        var text = getElementById("story").value;
-        var topic = getElementById("topic").value;
->>>>>>> 3f527751d1c49774678098e57ecc425f88ebac2f
->>>>>>> a72b7a2ad564da5e768deb4fb574ce9d5c0bea65
+        var topic = document.getElementById("storyForm").elements[0].value;
+        var text = document.getElementById("storyForm").elements["story"].value;
         if (text != null && topic != null) {
           jQuery.post("/" + topic, text);
         }
