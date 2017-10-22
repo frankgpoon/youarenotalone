@@ -27,7 +27,6 @@ function getHTML(topic) {
     </head>
     `;
     var displayText;
-    console.log(typeof topics);
     if (topicsRef.child(topic) === null) {
         displayText = 'The current topic, ' + topic + ' is empty. There are no posts.';
     } else {
@@ -46,33 +45,36 @@ exports.load = functions.https.onRequest((req, res) => {
     // check if topic exists in database
     // if not then create topic
     var topic = req.url.substring(1);
-    console.log(topic + ' first call of topic');
 
-    topicsRef.on("value", function(snapshot) {
-        var topics = snapshot.val();
-        console.log(topic + ' second call of topic');
-        if (!topics.hasOwnProperty(topic)) {
-            console.log('Creating topic ' + topic);
-            topicsRef.child(topic).set({});
-        } else {
-            console.log('Topic ' + topic + ' already exists');
-        }
+    if (topic.indexOf('.' < 0)) {
+        console.log('this should only appear if the topic has no period (to prevent actual files)');
+        topicsRef.on("value", function(snapshot) {
+            var topics = snapshot.val();
+            console.log(topic + ' second call of topic');
+            if (!topics.hasOwnProperty(topic)) {
+                console.log('Creating topic ' + topic);
+                topicsRef.child(topic).set({created: true});
+            } else {
+                console.log('Topic ' + topic + ' already exists');
+            }
 
-        var topicRef = topicsRef.child(topic);
+            var topicRef = topicsRef.child(topic);
 
-        console.log(topic + ' third call of topic');
-        // use getHTML function to load entries
+            console.log(topic + ' third call of topic');
+            // use getHTML function to load entries
 
-        // req.url has the path in "/path" form, so need to substring by 1
-        if (topic !== 'add') {
-            res.status(200).send(
-                getHTML(topic)
-            );
-        }
-    }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
-    });
+            // req.url has the path in "/path" form, so need to substring by 1
+            if (topic !== 'add') {
+                res.status(200).send(
+                    getHTML(topic)
+                );
+            }
+        }, function (errorObject) {
+            console.log("The read failed: " + errorObject.code);
+        });
 
+    }
+    /*
     var topicRef = topicsRef.child(topic);
 
     // use getHTML function to load entries
@@ -82,5 +84,5 @@ exports.load = functions.https.onRequest((req, res) => {
         res.status(200).send(
             getHTML(topic)
         );
-    }
+    }*/
 })
