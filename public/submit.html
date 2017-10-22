@@ -1,0 +1,27 @@
+<form method="post" id='storyForm'>
+    Topic: <input type="text" id="topic"><br>
+    <br>
+    Your Story:<br>
+    <textarea form ="testformid" id="story" rows= "50" cols="150"></textarea><br>
+    <button onclick="submitForm()">Share Your Story</button><br>
+    </form>
+
+
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+
+
+    <script src="js/scripts.js"></script>
+
+    <!-- Sends postReq to our funtions URL -->
+    <script>
+      function submitForm(){
+        var text = getElementById("story").value;
+        var topic = getElementById("topic").value;
+        if (text != null && topic != null) {
+          jQuery.post("/" + topic, text);
+        }
+      }
+    </script>
