@@ -29,10 +29,12 @@ function getHTML(topic) {
     return head + body;
 }
 
-exports.loadstories = functions.https.onRequest((req, res) => {
+exports.load = functions.https.onRequest((req, res) => {
     // req.url has the path in "/path" form, so need to substring by 1
     var topic = req.url.substring(1);
-    res.status(200).send(
-        getHTML(topic)
-    );
+    if (topic !== 'add') {
+        res.status(200).send(
+            getHTML(topic)
+        );
+    }
 })
