@@ -52,8 +52,9 @@ function getHTMLBody(topic, numberOfPosts) {
 
     var heading = `
     <body>
+        <main>
         <div>
-            <h1>You Are Not Alone - #` + topic + `</h1>
+            <h1><a href="https://not-alone-183705.firebaseapp.com">You Are Not Alone</a> - #` + topic + `</h1>
             <small>` + subtitle + `</small>
         </div>
         <div>
@@ -66,6 +67,7 @@ function getHTMLBody(topic, numberOfPosts) {
     `;
 
     var footer = `
+    </main>
     </body>
     </html>
     `;

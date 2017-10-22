@@ -4,46 +4,58 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title> You are not alone! </title>
+    <title> You are not alone. </title>
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/4.6.0/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
     <script defer src="/__/firebase/4.6.0/firebase-auth.js"></script>
     <script defer src="/__/firebase/4.6.0/firebase-database.js"></script>
 
-    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Patrick+Hand" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" type="text/css" href="https://not-alone-183705.firebaseapp.com/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+    document.getElementById("query").addEventListener("keydown", function(e) {
+    if (!e) { var e = window.event; }
+    e.preventDefault(); // sometimes useful
+
+    // Enter is pressed
+    if (e.keyCode == 13) {
+        var text = document.getElementById('query').value;
+        jQuery.get('/' + text);
+    }
+}, false);
+    </script>
 
   </head>
   <body>
 
-  <div id="main-title"> You are not alone! </div>
-
-  <div id="links">
-    <button class="button button2" id="started">Get Started </button>
+<main>
+  <div><h1 style="text-align: center">You are not alone!</h1>
+      <input id="query" type="text" id="search", onkeyup="this.value = this.value.replace(/[^a-z]/, '')" placeholder="Find a topic...">
   </div>
+  <link rel="stylesheet" href="https://not-alone-183705.firebaseapp.com/animation.css">
 
-  <script type="text/javascript">
-    document.getElementById("started").onclick = function () {
-        location.href = "./topics.html";
-    };
-</script>
-  <link rel="stylesheet" href="animation.css">
-  <div id="clouds">
-    <div class="cloud x1"></div>
-    <!-- Time for multiple clouds to dance around -->
-    <div class="cloud x2"></div>
-    <div class="cloud x3"></div>
-    <div class="cloud x4"></div>
-    <button class="button3 button4" id="about">About Us </button>
-      <div class="arrow arrow-1"></div>
-      <div class="arrow arrow-2"></div>
-    <div class="cloud x5"></div>
+  <div><p>This is a supportive story-sharing community focused on socially stigmatized issues, such as HIV, Homelessness, and Domestic Violence. People suffering from these mental/physical problems can often feel isolated and depressed. So this community provides a safe-space where users can help other users across the world by anonymously sharing their heart-warming stories around the same issue.<br>You know why? Because no one deserves to feel alone!</p></div>
+  </body>
+
+  <div><small>Note: This website is NOT an alternative to therapy and counseling, etc. Nor is it supposed to be that way. It is just a welcoming and friendly environment to make the social stigmas around health issues easier to handle. Also, encouraging to get help from professionals.</small></div>
+</main>
+<div id="clouds">
+  <div class="cloud x1"></div>
+  <!-- Time for multiple clouds to dance around -->
+  <div class="cloud x2"></div>
+  <div class="cloud x3"></div>
+  <div class="cloud x4"></div>
+  <div class="cloud x5"></div>
+</div>
+
 
   </div>
 
