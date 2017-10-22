@@ -15,7 +15,7 @@ var topicsRef = db.ref().child("topics");
 
 // Helper Functions
 
-function getHTML(topic) {
+function getHTML(topic, numberOfPosts) {
     var head = `
     <!DOCTYPE html>
     <html>
@@ -26,16 +26,10 @@ function getHTML(topic) {
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     `;
-    var displayText;
-    console.log(typeof topics);
-    if (topicsRef.child(topic) === null) {
-        displayText = 'The current topic, ' + topic + ' is empty. There are no posts.';
-    } else {
-        displayText = 'There are currently posts in ' + topic + '.';
-    }
+
     var body = `
     <body>
-        <h1>` + displayText + `</h1>
+        <h1>There are currently ` + numberOfPosts + ` posts in this topic.</h1>
     </body>
     </html>
     `;
@@ -43,36 +37,40 @@ function getHTML(topic) {
 }
 
 exports.load = functions.https.onRequest((req, res) => {
-    // check if topic exists in database
-    // if not then create topic
+    // take path name
     var topic = req.url.substring(1);
-    console.log(topic + ' first call of topic');
 
-    topicsRef.on("value", function(snapshot) {
-        var topics = snapshot.val();
-        console.log(topic + ' second call of topic');
-        if (!topics.hasOwnProperty(topic)) {
-            console.log('Creating topic ' + topic);
-            topicsRef.child(topic).set({});
-        } else {
-            console.log('Topic ' + topic + ' already exists');
-        }
+    // check for file extension and don't create topic if file exists
+    if (topic.indexOf('.') < 0) {
+        topicsRef.on("value", function(snapshot) {
+            // import files async
+            var topics = snapshot.val();
+            console.log(topic + ' second call of topic');
+            // check if topic exists
+            if (!topics.hasOwnProperty(topic)) {
+                console.log('Creating topic ' + topic);
+                // create new topic and set created flag so it's not null
+                topicsRef.child(topic).set({created: true});
+            } else {
+                console.log('Topic ' + topic + ' already exists');
+            }
 
-        var topicRef = topicsRef.child(topic);
+            var topicRef = topicsRef.child(topic);
+            // use getHTML function to load entries
+            console.log('length of current topic is ' + Object.keys(topics.topic).length);
 
-        console.log(topic + ' third call of topic');
-        // use getHTML function to load entries
+            // req.url has the path in "/path" form, so need to substring by 1
+            if (topic !== 'add') {
+                res.status(200).send(
+                    getHTML(topic, numberOfPosts)
+                );
+            }
+        }, function (errorObject) {
+            console.log("The read failed: " + errorObject.code);
+        });
 
-        // req.url has the path in "/path" form, so need to substring by 1
-        if (topic !== 'add') {
-            res.status(200).send(
-                getHTML(topic)
-            );
-        }
-    }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
-    });
-
+    }
+    /*
     var topicRef = topicsRef.child(topic);
 
     // use getHTML function to load entries
@@ -82,5 +80,5 @@ exports.load = functions.https.onRequest((req, res) => {
         res.status(200).send(
             getHTML(topic)
         );
-    }
+    }*/
 })
